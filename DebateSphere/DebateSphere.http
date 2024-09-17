@@ -1,0 +1,6 @@
+@DebateSphere_HostAddress = http://localhost:5244
+
+GET {{DebateSphere_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
