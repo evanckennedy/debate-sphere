@@ -1,4 +1,8 @@
 
+using DebateSphere.BLL;
+using DebateSphere.DAL;
+using Microsoft.EntityFrameworkCore;
+
 namespace DebateSphere
 {
     public class Program
@@ -8,6 +12,20 @@ namespace DebateSphere
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            // Register the DbContext with the connection string from appsettings.json
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            // Register DAL and BLL 
+            builder.Services.AddScoped<UserDAL>();
+            builder.Services.AddScoped<DebateDAL>();
+            builder.Services.AddScoped<ArgumentDAL>();
+            builder.Services.AddScoped<VoteDAL>();
+            builder.Services.AddScoped<UserService>();
+            builder.Services.AddScoped<DebateService>();
+            builder.Services.AddScoped<ArgumentService>();
+            builder.Services.AddScoped<VoteService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
