@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DebateSphere.BLL
+namespace DebateSphere.BLL.Interfaces
 {
-    public class DebateService
+    public interface IDebateService
     {
     }
 }
