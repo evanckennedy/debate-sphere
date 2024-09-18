@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DebateSphere.DAL
+namespace DebateSphere.DAL.Interfaces
 {
-    public class UserDAL
+    public interface IDebateDAL
     {
     }
 }

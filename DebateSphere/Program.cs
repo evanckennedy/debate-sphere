@@ -1,6 +1,8 @@
 
 using DebateSphere.BLL;
 using DebateSphere.DAL;
+using DebateSphere.DAL.Implementations;
+using DebateSphere.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace DebateSphere
@@ -21,7 +23,7 @@ namespace DebateSphere
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             // Register DAL and BLL 
-            builder.Services.AddScoped<UserDAL>();
+            builder.Services.AddScoped<IUserDAL, UserDAL>();
             builder.Services.AddScoped<DebateDAL>();
             builder.Services.AddScoped<ArgumentDAL>();
             builder.Services.AddScoped<VoteDAL>();

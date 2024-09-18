@@ -15,4 +15,8 @@
     <ProjectReference Include="..\DebateSphere.Models\DebateSphere.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
+  </ItemGroup>
+
 </Project>
