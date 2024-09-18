@@ -17,6 +17,9 @@ namespace DebateSphere
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+            // Register AutoMapper
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
+
             // Register DAL and BLL 
             builder.Services.AddScoped<UserDAL>();
             builder.Services.AddScoped<DebateDAL>();
