@@ -7,13 +7,18 @@ using System.Threading.Tasks;
 
 namespace DebateSphere.Models.DTOs
 {
-    public class ArgumentReadDTO
+    public class VoteCreateDTO
     {
-        public int ArgumentID { get; set; }
         public int DebateID { get; set; }
-        public int PostedBy { get; set; }
-        public Side Side { get; set; }
-        public string Content { get; set; }
+        public int VoterID { get; set; }
+        public Side VotedSide { get; set; }
+    }
+
+    public class VoteListDTO
+    {
+        public int VoteID { get; set; }
+        public int DebateID { get; set; }
+        public Side VotedSide { get; set; }
         public DateTime CreatedAt { get; set; }
     }
 }
