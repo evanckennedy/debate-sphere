@@ -12,6 +12,7 @@ namespace DebateSphere.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public int CreatedBy { get; set; } // foreign key referencing UserID
+        public DateTime CreatedAt { get; set; }
 
         // Navigation Properties
         public User User { get; set; } // Many Debates are created by one User (Many-to-1)
