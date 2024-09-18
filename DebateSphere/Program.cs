@@ -1,6 +1,7 @@
 
 using DebateSphere.BLL;
 using DebateSphere.BLL.Implementations;
+using DebateSphere.BLL.Interfaces;
 using DebateSphere.DAL;
 using DebateSphere.DAL.Implementations;
 using DebateSphere.DAL.Interfaces;
@@ -15,28 +16,29 @@ namespace DebateSphere
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
-            // Register the DbContext with the connection string from appsettings.json
-            builder.Services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-            // Register AutoMapper
-            builder.Services.AddAutoMapper(typeof(MappingProfile));
-
-            // Register DAL and BLL 
-            builder.Services.AddScoped<IUserDAL, UserDAL>();
-            builder.Services.AddScoped<DebateDAL>();
-            builder.Services.AddScoped<ArgumentDAL>();
-            builder.Services.AddScoped<VoteDAL>();
-            builder.Services.AddScoped<UserService>();
-            builder.Services.AddScoped<DebateService>();
-            builder.Services.AddScoped<ArgumentService>();
-            builder.Services.AddScoped<VoteService>();
-
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            // Register AutoMapper
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+          // Register DALs 
+            builder.Services.AddScoped<IUserDAL, UserDAL>();
+            builder.Services.AddScoped<IDebateDAL, DebateDAL>();
+            builder.Services.AddScoped<IArgumentDAL, ArgumentDAL>();
+            builder.Services.AddScoped<IVoteDAL, VoteDAL>();
+
+            // Register Services 
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IDebateService, DebateService>();
+            builder.Services.AddScoped<IArgumentService, ArgumentService>();
+            builder.Services.AddScoped<IVoteService, VoteService>();
+
+            // Register DbContext
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
