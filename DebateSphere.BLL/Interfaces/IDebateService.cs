@@ -11,7 +11,7 @@ namespace DebateSphere.BLL.Interfaces
     {
         Task<DebateReadDTO> CreateDebateAsync(DebateCreateDTO debateCreateDTO);
         Task<IEnumerable<DebateListDTO>> GetAllDebatesAsync();
-        Task<DebateReadDTO> GetDebateByIdAsync(int DebateId);
+        Task<DebateReadDTO> GetDebateByIdAsync(int debateId);
         Task<DebateReadDTO> UpdateDebateAsync(int debateId, DebateUpdateDTO debateUpdateDTO);
         Task<bool> DeleteDebateAsync(int debateId);
     }
