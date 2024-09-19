@@ -25,7 +25,7 @@ namespace DebateSphere.BLL.Implementations
         public async Task<DebateReadDTO> CreateDebateAsync(DebateCreateDTO debateCreateDTO)
         {
             var debate = _mapper.Map<Debate>(debateCreateDTO);
-            //debate.CreatedAt = DateTime.UtcNow;
+            debate.CreatedAt = DateTime.UtcNow;
             var createdDebate = await _debateDAL.CreateDebateAsync(debate);
             return _mapper.Map<DebateReadDTO>(createdDebate);
         }
