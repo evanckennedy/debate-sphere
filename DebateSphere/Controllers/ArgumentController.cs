@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DebateSphere.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/arguments")]
     [ApiController]
     public class ArgumentController : ControllerBase
     {
@@ -17,7 +17,7 @@ namespace DebateSphere.Controllers
             _argumentService = argumentService;
         }
 
-        [HttpPost("/debates/{debateId}/arguments")]
+        [HttpPost("/api/debates/{debateId}/arguments")]
         public async Task<IActionResult> CreateArgument(int debateId, ArgumentCreateDTO argumentCreateDTO)
         {
             argumentCreateDTO.DebateID = debateId;
@@ -25,7 +25,7 @@ namespace DebateSphere.Controllers
             return CreatedAtAction(nameof(GetArgumentById), new { argumentId = argument.ArgumentID }, argument);
         }
 
-        [HttpGet("/debates/{debateId}/arguments")]
+        [HttpGet("/api/debates/{debateId}/arguments")]
         public async Task<IActionResult> GetArgumentsByDebateId(int debateId)
         {
             var arguments = await _argumentService.GetArgumentsByDebateIdAsync(debateId);

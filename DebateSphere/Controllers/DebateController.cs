@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DebateSphere.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/debates")]
     [ApiController]
     public class DebateController : ControllerBase
     {
