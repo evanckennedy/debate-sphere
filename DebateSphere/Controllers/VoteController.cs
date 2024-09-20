@@ -16,7 +16,7 @@ namespace DebateSphere.Controllers
             _voteService = voteService;
         }
 
-        [HttpPost("/debates/{debateId}/vote")]
+        [HttpPost("/api/debates/{debateId}/vote")]
         public async Task<IActionResult> CreateVote(int debateId, VoteCreateDTO voteCreateDTO)
         {
             voteCreateDTO.DebateID = debateId;
@@ -24,7 +24,7 @@ namespace DebateSphere.Controllers
             return CreatedAtAction(nameof(GetVotesByDebateId), new { debateId = vote.DebateID }, vote);
         }
 
-        [HttpGet("/debates/{debateId}/votes")]
+        [HttpGet("/api/debates/{debateId}/votes")]
         public async Task<IActionResult> GetVotesByDebateId(int debateId)
         {
             var votes = await _voteService.GetVotesByDebateIdAsync(debateId);
