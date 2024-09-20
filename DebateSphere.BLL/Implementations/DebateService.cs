@@ -54,7 +54,6 @@ namespace DebateSphere.BLL.Implementations
             debate.Title = debateUpdateDTO.Title;
             debate.Description = debateUpdateDTO.Description;
             debate.CreatedBy = debateUpdateDTO.CreatedBy;
-            //debate.DebateID = debateId;
 
             var updatedDebate = await _debateDAL.UpdateDebateAsync(debate);
             return _mapper.Map<DebateReadDTO>(updatedDebate);
