@@ -44,11 +44,22 @@ namespace DebateSphere.BLL.Implementations
 
         public async Task<DebateReadDTO> UpdateDebateAsync(int debateId, DebateUpdateDTO debateUpdateDTO)
         {
-            var debate = _mapper.Map<Debate>(debateUpdateDTO);
-            debate.DebateID = debateId;
+            var debate = await _debateDAL.GetDebateByIdAsync(debateId);
+            if (debate == null)
+            {
+                return null;
+            }
+
+            // Map the updated properties
+            debate.Title = debateUpdateDTO.Title;
+            debate.Description = debateUpdateDTO.Description;
+            debate.CreatedBy = debateUpdateDTO.CreatedBy;
+            //debate.DebateID = debateId;
+
             var updatedDebate = await _debateDAL.UpdateDebateAsync(debate);
             return _mapper.Map<DebateReadDTO>(updatedDebate);
         }
+        
 
         public async Task<bool> DeleteDebateAsync(int debateId)
         {
