@@ -45,7 +45,8 @@ namespace DebateSphere.DAL
             modelBuilder.Entity<Debate>()
                 .HasOne(d => d.User)
                 .WithMany(u => u.Debates)
-                .HasForeignKey(d => d.CreatedBy);
+                .HasForeignKey(d => d.CreatedBy)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Debate>()
                 .Property(d => d.CreatedAt)
@@ -58,12 +59,14 @@ namespace DebateSphere.DAL
             modelBuilder.Entity<Argument>()
                 .HasOne(a => a.Debate)
                 .WithMany(d => d.Arguments)
-                .HasForeignKey(a => a.DebateID);
+                .HasForeignKey(a => a.DebateID)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Argument>()
                 .HasOne(a => a.User)
                 .WithMany(u => u.Arguments)
-                .HasForeignKey(a => a.PostedBy);
+                .HasForeignKey(a => a.PostedBy)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Argument>()
                 .Property(a => a.CreatedAt)
@@ -76,12 +79,14 @@ namespace DebateSphere.DAL
             modelBuilder.Entity<Vote>()
                 .HasOne(v => v.Debate)
                 .WithMany(d => d.Votes)
-                .HasForeignKey(v => v.DebateID);
+                .HasForeignKey(v => v.DebateID)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Vote>()
                 .HasOne(v => v.User)
                 .WithMany(u => u.Votes)
-                .HasForeignKey(v => v.VoterID);
+                .HasForeignKey(v => v.VoterID)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Vote>()
                 .HasIndex(v => new { v.DebateID, v.VoterID })

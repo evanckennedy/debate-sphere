@@ -48,7 +48,17 @@ namespace DebateSphere.BLL.Implementations
 
         public async Task UpdateUserAsync(UserUpdateDTO userUpdateDTO)
         {
-            var user = _mapper.Map<User>(userUpdateDTO);
+            var user = await _userDAL.GetUserByIdAsync(userUpdateDTO.UserID);
+            if (user == null)
+            {
+                throw new KeyNotFoundException("User not found");
+            }
+
+            // Update fields
+            user.Username = userUpdateDTO.Username;
+            user.Email = userUpdateDTO.Email;
+            user.Password = userUpdateDTO.Password; // Add this line
+
             await _userDAL.UpdateUserAsync(user);
         }
     }
