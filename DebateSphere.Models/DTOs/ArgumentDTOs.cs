@@ -36,6 +36,8 @@ namespace DebateSphere.Models.DTOs
     public class ArgumentUpdateDTO
     {
         public int ArgumentID { get; set; }
+        public int DebateID { get; set; }
+        public int PostedBy { get; set; }
         public Side Side { get; set; }
         public string Content { get; set; }
     }

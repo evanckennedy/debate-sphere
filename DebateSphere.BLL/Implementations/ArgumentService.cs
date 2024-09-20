@@ -44,9 +44,19 @@ namespace DebateSphere.BLL.Implementations
 
         public async Task<ArgumentReadDTO> UpdateArgumentAsync(int argumentId, ArgumentUpdateDTO argumentUpdateDTO)
         {
-            var argument = _mapper.Map<Argument>(argumentUpdateDTO);
-            argument.ArgumentID = argumentId;
-            var updatedArgument = await _argumentDAL.UpdateArgumentAsync(argument);
+            var existingArgument = await _argumentDAL.GetArgumentByIdAsync(argumentId);
+            if (existingArgument == null)
+            {
+                return null;
+            }
+
+            // Map the updated properties
+            existingArgument.DebateID = argumentUpdateDTO.DebateID;
+            existingArgument.PostedBy = argumentUpdateDTO.PostedBy;
+            existingArgument.Side = argumentUpdateDTO.Side;
+            existingArgument.Content = argumentUpdateDTO.Content;
+
+            var updatedArgument = await _argumentDAL.UpdateArgumentAsync(existingArgument);
             return _mapper.Map<ArgumentReadDTO>(updatedArgument);
         }
 
